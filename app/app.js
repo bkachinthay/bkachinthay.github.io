@@ -16,11 +16,17 @@ import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 
+import { MuiThemeProvider, createMuiTheme } from 'material-ui';
+import themeStyle from 'theme';
+
 // Import root app
 import App from 'containers/App';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
+
+// intial state
+import initialState from 'mock/initialState';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
@@ -45,8 +51,11 @@ import { translationMessages } from './i18n';
 // Import CSS reset and Global Styles
 import './global-styles';
 
+// material ui base theme
+const theme = createMuiTheme(themeStyle);
+
 // Create redux store with history
-const initialState = {};
+// const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
@@ -56,7 +65,9 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <MuiThemeProvider theme={theme}>
+            <App />
+          </MuiThemeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

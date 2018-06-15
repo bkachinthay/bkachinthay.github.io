@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.5.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "squash-ladder",
+  "version": "0.0.1",
+  "description": "React app to manage squash ladders(leagues).",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": ""
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "Bharath Kachinthay",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -212,10 +212,14 @@
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
+    "@material-ui/core": "^1.1.0",
+    "@material-ui/icons": "^1.0.0-beta.43",
     "babel-polyfill": "6.23.0",
     "chalk": "^1.1.3",
+    "classnames": "^2.2.5",
     "compression": "1.6.2",
     "cross-env": "5.0.0",
+    "date-fns": "^1.29.0",
     "express": "4.15.3",
     "fontfaceobserver": "2.0.9",
     "history": "4.6.3",
@@ -225,16 +229,20 @@
     "invariant": "2.2.2",
     "ip": "1.1.5",
     "lodash": "4.17.4",
+    "material-ui": "^1.0.0-beta.38",
     "minimist": "1.2.0",
     "prop-types": "15.5.10",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
+    "react": "16.3.0",
+    "react-dom": "16.3.0",
     "react-helmet": "5.1.3",
     "react-intl": "2.3.0",
     "react-loadable": "4.0.3",
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
+    "react-select": "^1.2.1",
+    "react-swipeable-views": "^0.12.13",
+    "react-virtualized": "^9.18.5",
     "redux": "3.6.0",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",

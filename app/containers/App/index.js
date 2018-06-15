@@ -11,19 +11,45 @@
  * the linting exception.
  */
 
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { compose } from 'redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import CssBaseline from 'material-ui/CssBaseline';
 
-import HomePage from 'containers/HomePage/Loadable';
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+import Ladders from 'containers/Ladders/Loadable';
+import LadderDetail from 'containers/LadderDetail/Loadable';
+import AddLadder from 'containers/Ladders/AddLadderContainer';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import AlertContainer from './AlertContainer';
+import reducer from './reducer';
+import saga from './saga';
 
-export default function App() {
-  return (
-    <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </div>
-  );
+class App extends Component { // eslint-disable-line
+  render() {
+    return (
+      <div>
+        <CssBaseline />
+        <Switch>
+          <Redirect exact path="/" to="/ladders" />
+          <Route path="/ladders" component={Ladders} />
+          <Route path="/ladder/add" component={AddLadder} />
+          <Route path="/ladder/:id/edit" component={AddLadder} />
+          <Route path="/ladder/:id/:page(|ranking|matches)" component={LadderDetail} />
+          <Route exact path="/ladder/:id" component={LadderDetail} />
+          <Route component={NotFoundPage} />
+        </Switch>
+        <AlertContainer />
+      </div>
+    ); // note:- use laodable for AddLadder
+  }
 }
+
+const withReducer = injectReducer({ key: 'app', reducer });
+const withSaga = injectSaga({ key: 'app', saga });
+
+export default compose(
+  withSaga,
+  withReducer,
+)(App);

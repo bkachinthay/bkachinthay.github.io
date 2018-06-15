@@ -9,4 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
+export const SET_ALLERT_MESSAGE = 'app/APP/SET_ALLERT_MESSAGE';
 export const DEFAULT_LOCALE = 'en';
