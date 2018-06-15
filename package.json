@@ -13,6 +13,8 @@
   "author": "Bharath Kachinthay",
   "license": "MIT",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
@@ -222,6 +224,7 @@
     "date-fns": "^1.29.0",
     "express": "4.15.3",
     "fontfaceobserver": "2.0.9",
+    "gh-pages": "^1.2.0",
     "history": "4.6.3",
     "hoist-non-react-statics": "2.1.1",
     "immutable": "3.8.1",
