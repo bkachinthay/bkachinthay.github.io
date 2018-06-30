@@ -75,9 +75,9 @@ export default {
       matches: [],
     },
   },
-  ladderDetail: {
-    ladderIndex: false,
-    playerRanking: [],
-    showAddMatchDialog: false,
-  },
+  // ladderDetail: {
+  //   ladderIndex: false,
+  //   playerRanking: [],
+  //   showAddMatchDialog: false,
+  // },
 };

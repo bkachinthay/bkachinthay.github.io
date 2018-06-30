@@ -13,6 +13,7 @@ import {
 } from 'containers/Ladders/constants';
 import {
   SAVE_MATCH_DETAIL,
+  SET_ADD_LADDER_STATE,
 } from 'containers/LadderDetail/constants';
 import {
   SET_ALLERT_MESSAGE,
@@ -39,15 +40,28 @@ function laddersReducer(state = initialState, action) {
     case CHANGE_LADDER_NAME:
       return state.setIn(['addLadder', 'ladderName'], action.name);
     case UPDATE_LADDERS: {
-      const ladder = state.get('addLadder');
+      const newLadder = state.get('addLadder');
       const newState = state.set('addLadder', initialState.get('addLadder'));
+      const ladderCount = state.get('ladders').size;
 
-      if (action.id !== null) {
+      if (action.id !== null && action.id >= 0 && action.id < ladderCount) {
         return newState
-          .setIn(['ladders', action.id], ladder);
+          .updateIn(
+            ['ladders', action.id],
+            (ladder) => ladder
+              .set('ladderName', newLadder.get('ladderName'))
+              .set('players', newLadder.get('players'))
+          );
       }
       return newState
-        .update('ladders', (list) => list.push(ladder));
+        .update('ladders', (list) => list.push(newLadder));
+    }
+    case SET_ADD_LADDER_STATE: {
+      if (typeof action.id === 'number') {
+        const ladder = state.getIn(['ladders', action.id]);
+        return state.set('addLadder', ladder);
+      }
+      return state;
     }
     case SAVE_MATCH_DETAIL: {
       const {

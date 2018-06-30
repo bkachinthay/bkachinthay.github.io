@@ -15,7 +15,7 @@ import { FormControl } from 'material-ui/Form';
 import getTime from 'date-fns/get_time';
 import SelectWrapper from 'components/SelectWrapper';
 import DateTimePicker from 'components/DateTimePicker';
-import { MenuItem } from 'material-ui';
+import { MenuItem } from 'material-ui/Menu';
 
 const styles = {
   paper: {

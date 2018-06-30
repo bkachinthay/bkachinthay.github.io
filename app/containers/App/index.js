@@ -20,7 +20,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Ladders from 'containers/Ladders/Loadable';
 import LadderDetail from 'containers/LadderDetail/Loadable';
-import AddLadder from 'containers/Ladders/AddLadderContainer';
+import AddLadder from 'containers/Ladders/AddLadder/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import AlertContainer from './AlertContainer';
 import reducer from './reducer';
@@ -42,7 +42,7 @@ class App extends Component { // eslint-disable-line
         </Switch>
         <AlertContainer />
       </div>
-    ); // note:- use laodable for AddLadder
+    );
   }
 }
 

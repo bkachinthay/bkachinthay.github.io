@@ -20,9 +20,11 @@ const AddLadder = ({
     ladderName,
     changeLadderName,
     addLadder,
+    match,
   }) => {
   const ladderId = 1;
   const ladder = {};
+  const id = match.params.id;
   const appBarLeft = (
     <IconButton
       color="inherit"
@@ -45,7 +47,7 @@ const AddLadder = ({
   if (ladder) {
     appBarRight = (
       <Button
-        onClick={() => addLadder()}
+        onClick={() => addLadder(id)}
         color="inherit"
       >
         {'SAVE'}
@@ -98,6 +100,7 @@ AddLadder.propTypes = {
     description: PropTypes.string,
   })),
   addLadder: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default AddLadder;

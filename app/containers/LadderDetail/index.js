@@ -41,6 +41,7 @@ import {
 import {
   addMatch,
   setAddMatchDialogState,
+  openEditLadderForm,
 } from './actions';
 
 const RANKING_ITEM_HEIGHT = 65;
@@ -67,9 +68,19 @@ class LadderDetail extends Component {
     this.state = {
       anchorEl: null,
     };
+    this.handleMenu = this.handleMenu.bind(this);
+    this.handleClose = this.handleClose.bind(this);
     this.handleIndexChange = this.handleIndexChange.bind(this);
     this.handleSaveMatch = this.handleSaveMatch.bind(this);
     this.handleMatchClick = this.handleMatchClick.bind(this);
+  }
+
+  handleMenu(e) {
+    this.setState({ anchorEl: e.currentTarget });
+  }
+
+  handleClose() {
+    this.setState({ anchorEl: null });
   }
 
   handleIndexChange(i) {
@@ -100,10 +111,10 @@ class LadderDetail extends Component {
       matches,
       players,
       rankedPlayers,
+      openEditLadderFormState,
     } = this.props;
 
     const tabIndex = params.page ? pages.indexOf(params.page) : 0;
-
     const appBarLeft = (
       <IconButton
         onClick={() => pushRoute('/ladders')}
@@ -137,7 +148,7 @@ class LadderDetail extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem>Add Player</MenuItem>
+          <MenuItem onClick={() => openEditLadderFormState(params.id)}>Edit Ladder</MenuItem>
           <MenuItem>Settings</MenuItem>
         </Menu>
       </div>
@@ -255,6 +266,7 @@ LadderDetail.propTypes = {
   classes: PropTypes.object.isRequired,
   pushRoute: PropTypes.func.isRequired,
   replaceRoute: PropTypes.func.isRequired,
+  openEditLadderFormState: PropTypes.func.isRequired,
   handleAddMatch: PropTypes.func.isRequired,
   setAddMatchDialog: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
@@ -282,6 +294,7 @@ const withConnect = connect(
     replaceRoute: replace,
     handleAddMatch: addMatch,
     setAddMatchDialog: setAddMatchDialogState,
+    openEditLadderFormState: openEditLadderForm,
   }
 );
 
